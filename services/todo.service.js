@@ -1,8 +1,7 @@
-const todos = [];
+const todos = ["java", "Javascript", "C++", "Typescript"];
 
 const addTodo = (req, res) => {
     const { todo } = req.body;
-    console.log(todo)
     if (!todo) {
         res.status(400).json({ error: "missing todo" });
     }
@@ -15,15 +14,17 @@ const getTodos = (req, res) => {
 };
 
 const getTodoAtIndex = (req, res) => {
-    const { index } = req.param;
+    const { index } = req.params;
+
     if (index > todos.length)
         res.status(400).json({ error: "cannot get todo at this index" });
+
     res.status(200).json({ todo: todos[index] });
 };
 
 const updateTodoAtIndex = (req, res) => {
     const { todo } = req.query;
-    const { index } = req.param;
+    const { index } = req.params;
 
     if (index > todos.length)
         res.status(400).json({ error: "Cannot get todo at this index" });
@@ -34,11 +35,12 @@ const updateTodoAtIndex = (req, res) => {
 };
 
 const deleteAtIndex = (req, res) => {
-    const { index } = req.param;
+    const { index } = req.params;
     if (index > todos.length || todos.length === 0)
         res.status(400).json({ error: "index is invalid" });
-    todos.slice(index, 1);
-    res.status(200).json({ message: "todo removed", data: todos });
+    todos.splice(index, 1);
+
+    res.status(200).json({ message: `todo removed`, data: todos });
 };
 
 module.exports = {

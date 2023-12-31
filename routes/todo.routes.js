@@ -5,8 +5,8 @@ const todoServices = require("../services/todo.service");
 
 router.get("/", todoServices.getTodos);
 router.post("/", todoServices.addTodo);
-router.get('/:id', todoServices.getTodoAtIndex);
-router.put('/:id', todoServices.updateTodoAtIndex);
-router.delete('/:id', todoServices.deleteAtIndex);
+router.get('/:index', todoServices.getTodoAtIndex);
+router.put('/:index', todoServices.updateTodoAtIndex);
+router.delete('/:index', todoServices.deleteAtIndex);
 
 module.exports = router;
